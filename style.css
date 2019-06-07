@@ -1,0 +1,29 @@
+body{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items: center;
+  font-size: 2em;
+}
+
+#min{
+  text-align: center;
+  font-size: 1em;
+  width: 1.5em;
+  padding:5px;
+
+}
+#sec{
+  text-align: center;
+  font-size: 1em;
+  width: 1.5em;
+  padding: 5px;
+}
+span{
+  margin:0;
+}
+button{
+  margin-top:20px;
+  width:80px;
+  height:30px;
+}
