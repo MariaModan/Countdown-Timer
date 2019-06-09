@@ -1,3 +1,4 @@
+
 body{
   display:flex;
   flex-direction:column;
@@ -26,4 +27,8 @@ button{
   margin-top:20px;
   width:80px;
   height:30px;
+  background:green;
+}
+.stop{
+  background: red;
 }
