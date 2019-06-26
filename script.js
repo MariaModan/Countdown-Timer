@@ -1,15 +1,9 @@
-
 const button = document.getElementById("btn");
-
-//turns milliseconds into mm:ss format
-function msToTime(ms){
-  var min = Math.floor(ms / 60000);
-  var sec = Math.floor((ms-min*60000)/ 1000);
-  return min + ":" + sec;
-}
+let isTimerOn = false;
 
 //switches the button color and text
 function switchBtn(btn){
+  isTimerOn = !isTimerOn;
   btn.classList.toggle("stop");
   if(btn.innerHTML === "Pause"){
     btn.innerHTML = "Restart";
@@ -19,50 +13,42 @@ function switchBtn(btn){
     btn.innerHTML = "Pause";
     return 1;
   }
-  
+
 }
 
 button.addEventListener("click", function(){
 
   switchBtn(button);
-  
-  const min = document.getElementById("min").value;
-  const sec = document.getElementById("sec").value;
 
-  const startTime = (new Date()).getTime();
-  const endTime = startTime+ min*60000 +sec*1000;
-  var dif = endTime - startTime;
+  let min = parseInt(document.getElementById("min").value);
+  let sec = parseInt(document.getElementById("sec").value);
 
-  
 
-  function countDown(num){
-    let currentTime = (new Date()).getTime();
-    let clock = endTime - currentTime;
-    
-    if (clock < 1000){
+  function countdown2(){
+
+    if (min === 0 && sec === 0){
       clearInterval(timer);
     }
-    if (!button.classList.contains("stop")){
+    if (!isTimerOn){
       clearInterval(timer);
     }
-
-    let newSec = msToTime(clock).split(":")[1];
-    if (newSec.length ===1 ){
-      newSec = '0' + newSec;
+    if (sec === 0){
+        sec = 59;
+        min = min-1;
     }
-    let newMin = msToTime(clock).split(":")[0];
-    if (newMin.length ===1 ){
-      newMin = '0' + newMin;
+    else{
+        sec = sec-1;
     }
-
-
-    document.getElementById("sec").value = newSec;
-    document.getElementById("min").value = newMin;
-
-    return msToTime(clock);
+    if(sec<10){
+      sec = '0' + sec;
+    }
+    if(min<10){
+      min= '0' + min;
+    }
+    document.getElementById("sec").value = sec;
+    document.getElementById("min").value = min;
   }
 
-  let timer = setInterval(countDown, 1000);
+
+  let timer = setInterval(countdown2, 1000);
 });
-
-
