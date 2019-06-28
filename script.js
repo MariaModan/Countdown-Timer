@@ -4,7 +4,7 @@ let isTimerOn = false;
 //switches the button color and text
 function switchBtn(btn){
   isTimerOn = !isTimerOn;
-  btn.classList.toggle("stop");
+  btn.classList.toggle("in-progress");
   if(btn.innerHTML === "Pause"){
     btn.innerHTML = "Restart";
     return 1;
@@ -20,11 +20,9 @@ button.addEventListener("click", function(){
 
   switchBtn(button);
 
-  let min = parseInt(document.getElementById("min").value);
-  let sec = parseInt(document.getElementById("sec").value);
-
-
   function countdown2(){
+    let min = parseInt(document.getElementById("min").value);
+    let sec = parseInt(document.getElementById("sec").value);
 
     if (min === 0 && sec === 0){
       clearInterval(timer);
